@@ -48,13 +48,13 @@ PNode *amendElem(PNode * p,int add,int newElem)
 	return p;
 }
 
-//    定义链表遍历函数
+//    ������������
 void TraverseList(PNode List) {
-    PNode P = List->Next;    //    首节点赋值给临时节点P
-    printf("遍历链表的值为：");
+    PNode P = List->Next;    //    �׽ڵ㸳ֵ����ʱ�ڵ�P
+    printf("��������ֵΪ��");
     if (P == NULL)
-        printf("链表为空");
-    while (P != NULL)        //当临时节点P不为尾节点时，输出当前节点值 
+        printf("���Ϊ��");
+    while (P != NULL)        //����ʱ�ڵ�P��Ϊβ�ڵ�ʱ�����ǰ�ڵ�ֵ 
     {
         printf("%d ", P->Element);
         P = P->Next;
@@ -64,13 +64,24 @@ void TraverseList(PNode List) {
 
 void DeleteTheList(PNode List) {
     PNode P, Tmp;
-    P = List->Next;    //定义指针P指向链表要删除的链表List的第一个点节点
+    P = List->Next;    //����ָ��Pָ�����Ҫɾ������List�ĵ�һ���ڵ�
     List->Next = NULL;
     while (P != NULL) {
-        Tmp = P->Next;        //临时Tmp指向要删除的节点的下个节点
-        free(P);    //释放指针P指向的节点
-        P = Tmp;    //重新赋值
+        Tmp = P->Next;        //��ʱTmpָ��Ҫɾ��Ľڵ���¸�ڵ�
+        free(P);    //�ͷ�ָ��Pָ��Ľڵ�
+        P = Tmp;    //���¸�ֵ
     }
+
+	    printf("ɾ�����ɹ���\n");
+}
+
+//     ���������뺯��
+//    �����λ�õ�pos�ڵ�ǰ��������val�Ľڵ�
+void InsertList(PNode List, int pos, int val) {
+	int position = 0;
+	PNode P = List;    //    ����ڵ�pָ��ͷ�ڵ�
+	//    Ѱ��pos�ڵ��ǰ����
+=======
     printf("删除链表成功！\n");
 }
 
@@ -80,11 +91,20 @@ void InsertList(PNode List, int pos, int val) {
 	int position = 0;
 	PNode P = List;    //    定义节点p指向头节点
 	//    寻找pos节点的前驱结点
-	while (P != NULL&&position<pos - 1)
+  while (P != NULL&&position<pos - 1)
 	{
 		P = P->Next;
 		++position;
 	}
+
+  PNode Tmp = (PNode)malloc(sizeof(Node));    //    ����һ����ʱ�ڵ�����洢Ҫ��������
+	if (Tmp == NULL)
+	{
+		printf("�ڴ����ʧ�ܣ�");
+		exit(-1);
+	}
+	//    ����ڵ�
+=======
 	PNode Tmp = (PNode)malloc(sizeof(Node));    //    分配一个临时节点用来存储要插入的数据
 	if (Tmp == NULL)
 	{
@@ -98,6 +118,13 @@ void InsertList(PNode List, int pos, int val) {
 }
 
 
+//   ����ɾ�����Ԫ�غ���
+//    ɾ������еĵ�pos�ڵ�
+void DeleteList(PNode List, int pos) {
+	int position = 0;
+	PNode P = List;    //    ����һ��ָ��pָ�����ͷ�ڵ�
+	//    Ѱ��pos�ڵ�λ�õ�ǰ��ڵ�
+=======
 //   定义删除链表元素函数
 //    删除链表中的第pos节点
 void DeleteList(PNode List, int pos) {
@@ -109,6 +136,55 @@ void DeleteList(PNode List, int pos) {
 		++position;
 	}
 
+	//    ɾ��ڵ�
+	PNode Tmp = P->Next;    //    ������ʱָ��Tmpָ��Ҫɾ��Ľڵ�
+	P->Next = Tmp->Next;    //    ʹҪɾ��ڵ��ǰ����ָ�������ڵ�
+	free(Tmp);    //    �ͷ�ɾ��ڵ���ڴ�ռ䣬��ֹ�ڴ�й©
+	Tmp = NULL;    //    ʹqָ���ָ�룬��ֹ����Ұָ��
+}
+
+//����ѡ������#######################################################
+bool Sort_List(Node* head)
+{
+    int t = 0;
+    int size = Size_List(head);
+   
+   for (Node* temp = head->next; temp != NULL; temp = temp->next)
+   {
+        for (Node* p = temp; p != NULL; p = p->next)
+		{
+            if (temp->data > p->data)
+			{
+                t = temp->data;
+                temp->data = p->data;
+                p->data = t;
+            }
+        }
+    } 
+}
+
+
+// �����ת/����##################################################
+Status ListReverse(LinkList L)
+{
+    LinkList current,pnext,prev;
+    if(L == NULL || L->next == NULL)
+        return L;
+    current = L->next;  /* p1ָ�����ͷ�ڵ����һ��ڵ� */
+    pnext = current->next;
+    current->next = NULL;
+    while(pnext)
+    {
+        prev = pnext->next;
+        pnext->next = current;
+        current = pnext;
+        pnext = prev;
+    }
+    //printf("current = %d,next = %d \n",current->data,current->next->data);
+    L->next = current;  /* �����ͷ�ڵ�ָ��p1 */
+    return L;
+}
+=======
 	//    删除节点
 	PNode Tmp = P->Next;    //    定义临时指针Tmp指向要删除的节点
 	P->Next = Tmp->Next;    //    使要删除节点的前驱结点指向其后驱节点
