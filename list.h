@@ -10,5 +10,7 @@ typedef struct ListNode {
 
 void TraverseList(PNode List);
 void DeleteTheList(PNode List);
+void InsertList(PNode List, int pos, int val);
+void InsertList(PNode List, int pos, int val);
 
 #endif
