@@ -3,6 +3,50 @@
 #include "malloc.h"
 #include "list.h"
 
+// 初始化单链表
+InitList(PNode *L)
+{
+	* L = (PNode)malloc(sizeof(Node))
+	(*L)->Next = NULL;
+
+}
+//尾插法建立单链表
+void CreateFromTail(PNode L)
+{
+	Node *s,*r;
+	char c;
+	int flag = 1;
+	r = L;
+	while(flag)
+	{
+		c = getchar();
+		if(c!='$')
+		{
+			s = (Node*)malloc(sizeof(Node));
+			s->Element = c;
+			r->Next= s;
+			r=s;
+		}
+		else
+		{
+			flag = 0;
+			r->Next = NULL;
+		}
+	}
+}
+
+//更新结点的函数，newElem为新的数据域的值
+PNode *amendElem(PNode * p,int add,int newElem)
+{
+	PNode * temp=p;
+	temp=temp->Next;
+	for (int i=1; i<add; i++)
+	{
+		temp=temp->Next;
+	}
+	temp->Element =newElem;
+	return p;
+}
 
 //    定义链表遍历函数
 void TraverseList(PNode List) {

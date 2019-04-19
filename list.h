@@ -8,6 +8,9 @@ typedef struct ListNode {
     ListNode* Next;        //    指向下一个链表节点
 }Node, *PNode;
 
+InitList(PNode *L);
+void CreateFromTail(PNode L);
+PNode *amendElem(PNode * p,int add,int newElem);
 void TraverseList(PNode List);
 void DeleteTheList(PNode List);
 void InsertList(PNode List, int pos, int val);
