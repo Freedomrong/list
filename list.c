@@ -17,3 +17,15 @@ void TraverseList(PNode List) {
     }
     printf("\n");
 }
+
+void DeleteTheList(PNode List) {
+    PNode P, Tmp;
+    P = List->Next;    //定义指针P指向链表要删除的链表List的第一个点节点
+    List->Next = NULL;
+    while (P != NULL) {
+        Tmp = P->Next;        //临时Tmp指向要删除的节点的下个节点
+        free(P);    //释放指针P指向的节点
+        P = Tmp;    //重新赋值
+    }
+    printf("删除链表成功！\n");
+}

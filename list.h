@@ -9,5 +9,6 @@ typedef struct ListNode {
 }Node, *PNode;
 
 void TraverseList(PNode List);
+void DeleteTheList(PNode List);
 
 #endif
