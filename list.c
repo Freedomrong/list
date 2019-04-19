@@ -4,28 +4,44 @@
 #include "list.h"
 
 
-//    定义链表遍历函数
-void TraverseList(PNode List) {
-    PNode P = List->Next;    //    首节点赋值给临时节点P
-    printf("遍历链表的值为：");
-    if (P == NULL)
-        printf("链表为空");
-    while (P != NULL)        //当临时节点P不为尾节点时，输出当前节点值 
-    {
-        printf("%d ", P->Element);
-        P = P->Next;
-    }
-    printf("\n");
+//������ѡ������
+bool Sort_List(Node* head)
+{
+    int t = 0;
+    int size = Size_List(head);
+   
+   for (Node* temp = head->next; temp != NULL; temp = temp->next)
+   {
+        for (Node* p = temp; p != NULL; p = p->next)
+		{
+            if (temp->data > p->data)
+			{
+                t = temp->data;
+                temp->data = p->data;
+                p->data = t;
+            }
+        }
+    } 
 }
 
-void DeleteTheList(PNode List) {
-    PNode P, Tmp;
-    P = List->Next;    //定义指针P指向链表要删除的链表List的第一个点节点
-    List->Next = NULL;
-    while (P != NULL) {
-        Tmp = P->Next;        //临时Tmp指向要删除的节点的下个节点
-        free(P);    //释放指针P指向的节点
-        P = Tmp;    //重新赋值
+
+/* ��������ת/���� */
+Status ListReverse(LinkList L)
+{
+    LinkList current,pnext,prev;
+    if(L == NULL || L->next == NULL)
+        return L;
+    current = L->next;  /* p1ָ������ͷ�ڵ����һ���ڵ� */
+    pnext = current->next;
+    current->next = NULL;
+    while(pnext)
+    {
+        prev = pnext->next;
+        pnext->next = current;
+        current = pnext;
+        pnext = prev;
     }
-    printf("删除链表成功！\n");
+    //printf("current = %d,next = %d \n",current->data,current->next->data);
+    L->next = current;  /* ������ͷ�ڵ�ָ��p1 */
+    return L;
 }
