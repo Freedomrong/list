@@ -5,9 +5,10 @@ typedef int ElementType;        //    定义数据类型,可根据需要进行�
                                 //    链表节点的定义
 typedef struct ListNode {
     ElementType  Element;        //    数据域，存放数据
-    ListNode* Next;        //    指向下一个链表节点
+    struct	ListNode* Next;        //    指向下一个链表节点
 }Node, *PNode;
 
+PNode CreateList(void);
 InitList(PNode *L);
 void CreateFromTail(PNode L);
 PNode *amendElem(PNode * p,int add,int newElem);
